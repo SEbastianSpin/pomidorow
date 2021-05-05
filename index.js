@@ -2,7 +2,7 @@
 
 class watch {
 
-  constructor(minutes,analog, hour) {
+  constructor(minutes,analog) {
     this.min =minutes;
     this.startp=minutes*60;
     this.sec =0;
