@@ -7,6 +7,7 @@ class watch {
     this.startp=minutes*60;
     this.sec =0;
     this.analog=analog;
+    this.percent=(this.min*60+this.sec)/this.startp;
   }
 
   countdown(){
@@ -16,32 +17,19 @@ class watch {
 
     //$(".display").text(this.min+":"+this.sec);
 
-    var percent=(this.min*60+this.sec)/this.startp;
-    this.draw(Math.PI*1.5,(Math.PI*1.999)*percent-(Math.PI/2));
+    this.percent=(this.min*60+this.sec)/this.startp;
+    this.draw(Math.PI*1.5,(Math.PI*1.999)*this.percent-(Math.PI/2));
 
 
-    console.log(percent);
-
+    console.log(this.percent);
+  this.background();
 
 
     // if(percent>=0.90){
-    //   $('html').css({"background-image":"linear-gradient("+145+"deg, #5EACBD "+10+"%, #88BCC2)"});
+    //   $('html').css({"background-image":"linear-gradient(135deg, #5EACBD 0%, #88BCC2 100%, #C9DCD6 100%)"});
     // }
-    // if(percent<0.90 && percent >=0.75){
-    //   $('html').css({"background-image":"linear-gradient(145deg, #5EACBD 60%, #C9DCD6)"});
-    // }
-    // else if(percent <0.75 && percent>0.65){
-    //    $('html').css({"background-image":"linear-gradient(145deg, #C9DCD6 60%, #F6E1CF)"});
-    // }
-    // else if(percent <=0.65 && percent >=0.50 ){
-    //    $('html').css({"background-image":"linear-gradient(145deg, #F6E1CF 60%, #F04F5C)"});
-    // }
-    // else if(percent <=0.55 && percent>=0.45){
-    //    $('html').css({"background-image":"linear-gradient(145deg, #F27545 60%, #6B4861)"});
-    // }
-    // else if(percent <=0.45){
-    //    $('html').css({"background-image":"linear-gradient(145deg, #6B4861 60%, #090E1E)"});
-    // }
+
+
 
 
     ///Digital
@@ -57,7 +45,8 @@ class watch {
 
 
 
-  }, 10);
+  }, 1000);
+
 
 
 
@@ -76,11 +65,44 @@ draw(begin,end){///begin Math.PI*(3/2)
   }
 }
 
+background(){
+
+  setInterval(()=>{
+    let percentB=(this.sec*100)/60;
+    if(this.percent>=0.90){
+      $('html').css({"background-image":"linear-gradient(135deg, #5EACBD 0%, #88BCC2 "+percentB+"%, #C9DCD6 100%)"});
+    }
+    if(this.percent<0.90 && this.percent >=0.75){
+      $('html').css({"background-image":"linear-gradient(135deg, #88BCC2 0%, #C9DCD6 "+percentB+"%, #F6E1CF 100%)"});
+
+    }
+    else if(this.percent <0.75 && this.percent>0.65){
+        $('html').css({"background-image":"linear-gradient(135deg, #C9DCD6 0%, #F6E1CF "+percentB+"%, #F04F5C 100%)"});
+
+    }
+    else if(this.percent <=0.65 && this.percent >=0.50 ){
+        $('html').css({"background-image":"linear-gradient(45deg, #F6E1CF 0%, #F04F5C "+percentB+"%, #F27545 100%)"});
+
+    }
+    else if(this.percent <=0.55 &&this.percent>=0.45){
+      $('html').css({"background-image":"linear-gradient(45deg, #F04F5C 0%, #F27545 "+percentB+"%, #6B4861 100%)"});
+
+    }
+    else if(this.percent <=0.45){
+        $('html').css({"background-image":"linear-gradient(45deg, #F27545 0%, #6B4861 "+percentB+"%, #090E1E 100%)"});
+
+    }
+  },100)
+
+}
+
+
+
 }
 
 
 var canvas = document.getElementById("myCanvas");
-var Pomidoro=new watch(10,canvas);
+var Pomidoro=new watch(1,canvas);
 //Pomidoro.draw(Math.PI*(3/2),Math.PI*1.499);
 
 
