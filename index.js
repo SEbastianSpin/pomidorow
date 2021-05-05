@@ -1,4 +1,4 @@
-// #F6E1CF afternnon
+//erly morning 5EACBD   mid morning  88BCC2  later morning #C9DCD6  transition #FFFFFF #F6E1CF afternnon  late #FC5A67
 
 class watch {
 
@@ -21,11 +21,17 @@ class watch {
 
 
     console.log(percent);
-    if(percent<0.90 && percent >0.70){
-      $('html').css({"background-image":"linear-gradient(135deg, #5EACBD 60%, #F6E1CF)"});
+    if(percent>=0.90){
+      $('html').css({"background-image":"linear-gradient(95deg, #5EACBD 10%, #88BCC2)"});
     }
-    else if(percent <0.70){
-       $('html').css({"background-image":"linear-gradient(135deg, #F6E1CF 60%, black)"});
+    if(percent<0.90 && percent >=0.75){
+      $('html').css({"background-image":"linear-gradient(135deg, #5EACBD 60%, #88BCC2)"});
+    }
+    else if(percent <0.75 && percent>0.65){
+       $('html').css({"background-image":"linear-gradient(135deg, #88BCC2 60%, #F6E1CF)"});
+    }
+    else if(percent <=0.65){
+       $('html').css({"background-image":"linear-gradient(135deg, #F6E1CF 60%, #FC5A67)"});
     }
 
 
