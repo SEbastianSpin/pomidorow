@@ -46,7 +46,7 @@ class watch {
 
 
 
-  }, 100);
+  }, 1000);
 
 
 
@@ -69,7 +69,7 @@ draw(begin,end){///begin Math.PI*(3/2)
 background(){
 
   setInterval(()=>{
-    let percentB=(this.sec*100)/60;
+    let percentB=(this.min*this.sec*100)/(60*this.min);
     if(this.percent>=0.75){
       $('html').css({"background-image":"linear-gradient(135deg, #5EACBD 0%, #88BCC2 "+percentB+"%, #C9DCD6 100%)"});
     }
@@ -93,7 +93,7 @@ background(){
         $('html').css({"background-image":"linear-gradient(45deg, #F27545 0%, #6B4861 "+percentB+"%, #090E1E 100%)"});
 
     }
-  },10)
+  },1000)
 
 }
 
@@ -103,7 +103,7 @@ background(){
 
 
 var canvas = document.getElementById("myCanvas");
-var Pomidoro=new watch(1,canvas);
+var Pomidoro=new watch(5,canvas);
 //Pomidoro.draw(Math.PI*(3/2),Math.PI*1.499);
 
 
