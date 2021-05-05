@@ -1,10 +1,10 @@
-
+// #F6E1CF afternnon
 
 class watch {
 
-  constructor(minutes,analog) {
+  constructor(minutes,analog, hour) {
     this.min =minutes;
-    this.startp=minutes*60
+    this.startp=minutes*60;
     this.sec =0;
     this.analog=analog;
   }
@@ -18,6 +18,15 @@ class watch {
 
     var percent=(this.min*60+this.sec)/this.startp;
     this.draw(Math.PI*1.5,(Math.PI*1.999)*percent-(Math.PI/2));
+
+
+    console.log(percent);
+    if(percent<0.90 && percent >0.70){
+      $('html').css({"background-image":"linear-gradient(135deg, #5EACBD 60%, #F6E1CF)"});
+    }
+    else if(percent <0.70){
+       $('html').css({"background-image":"linear-gradient(135deg, #F6E1CF 60%, black)"});
+    }
 
 
     ///Digital
@@ -53,6 +62,8 @@ draw(begin,end){///begin Math.PI*(3/2)
 }
 
 }
+
+
 var canvas = document.getElementById("myCanvas");
 var Pomidoro=new watch(30,canvas);
 //Pomidoro.draw(Math.PI*(3/2),Math.PI*1.499);
