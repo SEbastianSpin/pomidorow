@@ -6,6 +6,7 @@ class watch {
     this.min =minutes;
     this.startp=minutes*60;
     this.sec =0;
+
     this.analog=analog;
     this.percent=(this.min*60+this.sec)/this.startp;
   }
@@ -45,7 +46,7 @@ class watch {
 
 
 
-  }, 1000);
+  }, 100);
 
 
 
@@ -69,14 +70,14 @@ background(){
 
   setInterval(()=>{
     let percentB=(this.sec*100)/60;
-    if(this.percent>=0.90){
+    if(this.percent>=0.75){
       $('html').css({"background-image":"linear-gradient(135deg, #5EACBD 0%, #88BCC2 "+percentB+"%, #C9DCD6 100%)"});
     }
-    if(this.percent<0.90 && this.percent >=0.75){
+    if(this.percent<0.75 && this.percent >=0.5){
       $('html').css({"background-image":"linear-gradient(135deg, #88BCC2 0%, #C9DCD6 "+percentB+"%, #F6E1CF 100%)"});
 
     }
-    else if(this.percent <0.75 && this.percent>0.65){
+    else if(this.percent <0.5 && this.percent>0.25){
         $('html').css({"background-image":"linear-gradient(135deg, #C9DCD6 0%, #F6E1CF "+percentB+"%, #F04F5C 100%)"});
 
     }
@@ -84,15 +85,15 @@ background(){
         $('html').css({"background-image":"linear-gradient(45deg, #F6E1CF 0%, #F04F5C "+percentB+"%, #F27545 100%)"});
 
     }
-    else if(this.percent <=0.55 &&this.percent>=0.45){
+    else if(this.percent <=0.55 &&this.percent>=0.30){
       $('html').css({"background-image":"linear-gradient(45deg, #F04F5C 0%, #F27545 "+percentB+"%, #6B4861 100%)"});
 
     }
-    else if(this.percent <=0.45){
+    else if(this.percent <=0.30){
         $('html').css({"background-image":"linear-gradient(45deg, #F27545 0%, #6B4861 "+percentB+"%, #090E1E 100%)"});
 
     }
-  },100)
+  },10)
 
 }
 
