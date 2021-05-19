@@ -22,7 +22,7 @@ class watch {
     this.draw(Math.PI*1.5,(Math.PI*1.999)*this.percent-(Math.PI/2));
 
 
-    console.log(this.percent);
+    //console.log(this.percent);
   this.background();
 
 
@@ -106,7 +106,23 @@ var canvas = document.getElementById("myCanvas");
 var Pomidoro=new watch(5,canvas);
 //Pomidoro.draw(Math.PI*(3/2),Math.PI*1.499);
 
+document.addEventListener('DOMContentLoaded', function () {
+  if (!Notification) {
+    alert('Desktop notifications not available in your browser. Try Chromium.'); //if browser is not compatible this will occur
+    return;
+  }
+  if (Notification.permission !== "granted")
+    Notification.requestPermission();
+});
 
+function notifyMe() {
+  if (Notification.permission !== "granted")
+    Notification.requestPermission();
+  else {
+    console.log("hi");
+
+  }
+}
 
 
 Pomidoro.countdown();
