@@ -8,11 +8,11 @@ class watch {
     this.sec = 0;
     this.analog = analog;
     this.percent = (this.min * 60 + this.sec) / this.startp;
-    this.intervalid=[2];
+    this.intervalid=0;
   }
 
   countdown() {
-    this.intervalid[0]=setInterval(() => {
+    this.intervalid = setInterval(() => {
 
       ///analog
 
@@ -20,19 +20,13 @@ class watch {
 
       this.percent = (this.min * 60 + this.sec) / this.startp;
       this.draw(Math.PI * 1.5, (Math.PI * 1.999) * this.percent - (Math.PI / 2));
-
+      let percentB = (this.min * this.sec * 100) / (60 * this.min);
 
       //console.log(this.percent);
-      this.background();
+      //this.background();
 
 
-      // if(percent>=0.90){
-      //   $('html').css({"background-image":"linear-gradient(135deg, #5EACBD 0%, #88BCC2 100%, #C9DCD6 100%)"});
-      // }
-
-
-
-     console.log("h");
+      console.log("h");
       ///Digital
       if (this.sec === 0 && this.min > 0) {
         this.min--;
@@ -40,40 +34,10 @@ class watch {
 
       } else if (this.sec > 0) {
         this.sec--;
+      } else if (this.sec == 0 && this.min == 0) {
+        clearInterval(this.intervalid[0]);
+        //clearInterval(this.intervalid[1]);
       }
-
-      else if (this.sec ==0 && this.min == 0) {
-      clearInterval(this.intervalid[0]);
-      clearInterval(this.intervalid[1]);
-      }
-
-
-
-
-    }, 100);
-
-
-
-
-
-  }
-
-  draw(begin, end) { ///begin Math.PI*(3/2)
-    if (canvas.getContext) {
-
-      var ctx = this.analog.getContext('2d');
-      ctx.beginPath();
-      ctx.strokeStyle = 'blue';
-      ctx.clearRect(0, 0, 450, 450);
-      ctx.arc(225, 225, 200, begin, end, false);
-      ctx.stroke();
-    }
-  }
-
-  background() {
-
-     this.intervalid[1]=setInterval(() => {
-      let percentB = (this.min * this.sec * 100) / (60 * this.min);
       if (this.percent >= 0.75) {
         $('html').css({
           "background-image": "linear-gradient(135deg, #5EACBD 0%, #88BCC2 " + percentB + "%, #C9DCD6 100%)"
@@ -103,10 +67,31 @@ class watch {
         $('html').css({
           "background-image": "linear-gradient(45deg, #F27545 0%, #6B4861 " + percentB + "%, #090E1E 100%)"
 
-    });
+        });
       }
-    }, 1000)
 
+
+
+
+    }, 100);
+
+
+
+
+
+  }
+
+  draw(begin, end) { ///begin Math.PI*(3/2)
+    if (canvas.getContext) {
+
+      var ctx = this.analog.getContext('2d');
+      ctx.beginPath();
+      ctx.strokeStyle = 'blue';
+      ctx.clearRect(0, 0, 450, 450);
+      ctx.arc(225, 225, 200, begin, end, false);
+      ctx.stroke();
+    }
+  }
   }
 
 
@@ -115,7 +100,7 @@ class watch {
 
 
 var canvas = document.getElementById("myCanvas");
-var Pomidoro = new watch(1, canvas);
+var Pomidoro = new watch(5, canvas);
 
 Pomidoro.countdown();
 //Pomidoro.draw(Math.PI*(3/2),Math.PI*1.499);
