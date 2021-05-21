@@ -35,7 +35,7 @@ class watch {
       } else if (this.sec > 0) {
         this.sec--;
       } else if (this.sec == 0 && this.min == 0) {
-        clearInterval(this.intervalid[0]);
+        clearInterval(this.intervalid);
         //clearInterval(this.intervalid[1]);
       }
       if (this.percent >= 0.75) {
@@ -92,7 +92,7 @@ class watch {
       ctx.stroke();
     }
   }
-  }
+  
 
 
 
